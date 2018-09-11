@@ -7,11 +7,11 @@ import {
 } from 'react-native';
 import { DrawerNavigator, StackNavigator } from 'react-navigation';
 //import App from './App';
-//import Todo from './App1';
+//import Todo from './App1';w
 
-import App1 from './screens/com1';
-import App2 from './screens/com2';
-import App3 from './screens/com3';
+import App1 from './screens/compa1';
+import App2 from './screens/compa2';
+import App3 from './screens/compa3';
 
 var width = Dimensions.get('window').width;
 const routeConfigs = {
