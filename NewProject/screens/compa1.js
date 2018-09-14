@@ -16,7 +16,7 @@ export default class App1 extends Component {
         
         drawerIcon: ({tintColor})=>(
             <Icon name='md-home' style={{ fontSize:20, color: tintColor}}/>
-        ),
+        )
         
     }
     render() {
