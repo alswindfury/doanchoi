@@ -3,168 +3,56 @@ import {
     AppRegistry,
     Dimensions, View,
     TextInput, TouchableOpacity,
-    Text
+    Text, ScrollView
 } from 'react-native';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import { DrawerNavigator, StackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
+
 //import App from './App';
-//import Todo from './App1';w
 
 import App1 from './screens/compa1';
 import App2 from './screens/compa2';
 import App3 from './screens/compa3';
 
+console.disableYellowBox =true;
+
 var width = Dimensions.get('window').width;
-const routeConfigs = {
-    'Main': { path: '/', screen: App1 },
-    'Detail': { path: '/Detail', screen: App2 },
-    'Third': { screen: App3 }
-};
-let drawerNavigatorConfig = {
-    initialRouteName: 'Third',
-    drawerWidth: width / 2,
-    drawerPosition: 'left',
-    drawerOpenRoute: 'DrawerOpen',
-    drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle',
-    contentOptions: {
-        activeTintColor: 'red'
+
+const CustomDrawerComponent = (props) => (
+    <View style={{flex: 1 }}>
+
+        <View style={{ backgroundColor: '#9fe987',height: 150,justifyContent:'center', alignItems:'center'}}>
+            <Text>HELLO</Text>
+        </View>
+        <ScrollView>
+            <DrawerItems {...props} />
+        </ScrollView>
+    </View>
+)
+const AppDrawerNavigation = createDrawerNavigator(
+    {
+        'Home': App1,
+        'Setting': App2,
+        'Log Out': App3
     },
-    order: ['Main', 'Detail', 'Third']
-}
-const App = DrawerNavigator(routeConfigs, drawerNavigatorConfig);
+    {   
+        initialRouteName: 'Log Out',
+        contentComponent: CustomDrawerComponent,
+        drawerWidth:width/2,
+        
+        contentOptions:{    
+            activeTintColor: '#ff8000'
+        }
+    },
+    
+)
 
-/*
-export default class AppOr extends Component {
-    constructor(props) {
-        super(props);
-        this.state = ({
-            DangNhap: 0,
-            text: ''
-        });
-    }
-    _onSubmit = () => {
-        this.setState({
-            DangNhap: this.state.text
-        });
-    }
-    render() {
-        const ddn = (<App name="TUNG" />);
-        const dn = (<View style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <TextInput
-                style={{ height: 60, width: 200, fontWeight: 'bold', fontSize: 20, color: '#d26900', textAlign: "center" }}
-                onChangeText={(text) => this.setState({ text })}
-                value={this.state.text}
-                returnKeyType="done"
-                underlineColorAndroid="#007100"
-                secureTextEntry={true}
-                keyboardType={'numeric'}
-                blurOnSubmit={false}
-                onSubmitEditing={() => { this._onSubmit() }}
-            //placeholder="enter code" 
-            />
-            <TouchableOpacity onPress={() => { this._onSubmit() }}>
-                <View style={{
-                    width: 150,
-                    height: 25,
-                    backgroundColor: '#009300',
-                    borderRadius: 15,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}>
-                    <Text style={{
-                        color: 'white',
-                        fontSize: 15
-                    }}>ĐĂNG NHẬP</Text>
-                </View>
-            </TouchableOpacity>
-        </View>);
+export class AppNavi extends Component {
 
-        var HienThi = this.state.DangNhap == '123' ? ddn : dn;
-        return (
-            <View style={{
-                flex: 1
-            }}>
-                {HienThi}
-            </View>
-        );
-    }
-}
-
-export  class DaDangNhap extends Component {
-    static navigationOptions = ({ navigation }) => {
-        let headerStyle ={ height:0 }
-        return { headerStyle };
-    }
     render() {
         return (
-            <View style={{flex:1}}>
-                <App />
-            </View>
-        );
+            <AppDrawerNavigation />
+        )
     }
 }
 
-export default  class DangNhap extends Component {
-    static navigationOptions = ({ navigation }) => {
-        let headerStyle ={ height:0 }
-        return { headerStyle };
-    }
-    constructor(props) {
-        super(props);
-        this.state = ({
-            text: ''
-        });
-    }
-    _onSubmit=()=>{
-        this.props.navigation.navigate('Detail1')
-    }
-    render() {
-        return (
-            <View style={{
-                flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <TextInput
-                    style={{ height: 60, width: 200, fontWeight: 'bold', fontSize: 20, color: '#d26900', textAlign: "center" }}
-                    onChangeText={(text) => this.setState({ text })}
-                    value={this.state.text}
-                    returnKeyType="done"
-                    underlineColorAndroid="#007100"
-                    secureTextEntry={true}
-                    keyboardType={'numeric'}
-                    blurOnSubmit={false}
-                    onSubmitEditing={() => { this._onSubmit() }}
-                //placeholder="enter code" 
-                />
-                <TouchableOpacity onPress={() => { this._onSubmit() }}>
-                    <View style={{
-                        width: 150,
-                        height: 25,
-                        backgroundColor: '#009300',
-                        borderRadius: 15,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}>
-                        <Text style={{
-                            color: 'white',
-                            fontSize: 15
-                        }}>ĐĂNG NHẬP</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
-        );
-    }
-}
-
-const AppNavigator = StackNavigator({
-    'Main1': { screen: DangNhap },
-    'Detail1': { screen: DaDangNhap },
-});
-*/
-
-AppRegistry.registerComponent('NewProject', () => App);
+AppRegistry.registerComponent('NewProject', () => AppNavi);
