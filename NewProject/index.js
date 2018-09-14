@@ -5,7 +5,7 @@ import {
     TextInput, TouchableOpacity,
     Text, ScrollView
 } from 'react-native';
-import { DrawerNavigator, StackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
+import { DrawerNavigator,createTabNavigator, StackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
 
 //import App from './App';
 
@@ -49,11 +49,45 @@ const AppDrawerNavigation = createDrawerNavigator(
     
 )
 
+const AppTabNavigation = createTabNavigator(
+    {
+        'Home': App1,
+        'Setting': App2,
+        'Log Out': App3
+    },
+    {  
+        tabBarOptions: {
+            upperCaseLabel: false,
+            
+            showIcon: true,
+            style: {
+              width: width,
+              backgroundColor: '#4586e0',
+            },
+            indicatorStyle: {
+              backgroundColor: 'white'
+            },
+            labelStyle: {
+              fontSize: 14,
+              color: "white",
+              fontFamily: "kohinoor"
+            },
+          },
+          tabBarPosition: 'bottom',
+          swipeEnabled: false,
+          animationEnabled: false,
+          lazy: true,
+          activeTintColor: '#ff8000',
+          
+    },
+    
+)
+
 export class AppNavi extends Component {
 
     render() {
         return (
-            <AppDrawerNavigation />
+            <AppTabNavigation />
         )
     }
 }

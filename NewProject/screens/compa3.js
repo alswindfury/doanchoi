@@ -17,11 +17,21 @@ import Button from 'react-native-button';
 
 var widths = Dimensions.get('window').width;
 export default class App3 extends Component {
+    /*
     static navigationOptions = {
         drawerIcon: ({ tintColor }) => (
             <Icon name='md-log-out' style={{ fontSize: 20, color: tintColor }} />
         )
     }
+    */
+   static navigationOptions = {
+    header: null,
+    title: "Log out",
+    tabBarIcon: () => {
+      return <Icon name="md-log-out" size={25} color={"white"} />;
+    }
+  }
+
     constructor(props) {
         super(props);
         this.state = ({
@@ -157,7 +167,7 @@ export default class App3 extends Component {
                         }
                     />
                 </View>
-                <TouchableOpacity onPress={() => { this._onSubmit() }}>
+                <Button onPress={() => { this._onSubmit() }}>
                     <View style={{
                         width: widths - 50,
                         height: 25,
@@ -171,7 +181,7 @@ export default class App3 extends Component {
                             fontSize: 15
                         }}>ĐĂNG NHẬP</Text>
                     </View>
-                </TouchableOpacity>
+                </Button>
                 <View style={{ height: 10 }}></View>
 
             </View >
